@@ -1,39 +1,64 @@
 <script setup>
+import { reactive } from 'vue';
+
+    const estado = reactive({
+        primeiroValor: 0,
+        segundoValor: 0,
+        operacao: '+',
+    })
+
+    const operacaoDeAdicao = () => {
+        const soma = parseFloat(estado.primeiroValor) + parseFloat(estado.segundoValor)
+        return soma
+    }
+
+    const operacaoDeSubtracao = () => {
+        return estado.primeiroValor - estado.segundoValor
+    }
+
+    const operacaoDeMultiplicacao = () => {
+        return estado.primeiroValor * estado.segundoValor
+    }
+
+    const operacaoDeDivisao = () => {
+        return estado.primeiroValor / estado.segundoValor
+    }
+
+    const filtraOperacaoAritmetica = () => {
+        switch (estado.operacao) {
+            default:
+                return operacaoDeAdicao()
+            case '-':
+                return operacaoDeSubtracao()
+            case '*':
+                return operacaoDeMultiplicacao()
+            case '/':
+                return operacaoDeDivisao()
+        }
+    }
 </script>
 
 <template>
     <div class="container p-4">
-        <header class="p-4 mb-4 mt-4 rounded-3">
-            <h1>Caculadora Aritmética</h1>
-        </header>
+        <div class="row">
+            <header class="col-6 p-4 mb-4 mt-4 rounded-3">
+                <h1 class="mb-4">Caculadora Aritmética</h1>
+                <div class="container container_screen p-3 rounded-3">
+                    {{ estado.primeiroValor }} {{ estado.operacao }} {{ estado.segundoValor }} = {{ filtraOperacaoAritmetica() }}
+                </div>
+            </header>
+        </div>
         <form>
             <div class="row mb-4">
-                <div class="col">
-                    <div class="row">
-                        <div class="col mb-3">
-                            <input type="number" placeholder="Digite o primeiro valor:" class="form-control"></input>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mb-3">
-                            <input type="number" placeholder="Digite o segundo valor:" class="form-control"></input>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mb-3">
-                            <select name="" id="" class="form-control">
-                                <option value="adicao">Adição +</option>
-                                <option value="adicao">Subtração -</option>
-                                <option value="adicao">Multiplicação *</option>
-                                <option value="adicao">Divisão /</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="container container_screen p-3">
-                        10 + 10 = 20
-                    </div>
+                <div class="col-6">
+                    <select @change="evento => estado.operacao = evento.target.value" class="form-control mb-3">
+                        <option value="+">Adição +</option>
+                        <option value="-">Subtração -</option>
+                        <option value="*">Multiplicação *</option>
+                        <option value="/">Divisão /</option>
+                    </select>
+                    <input @keyup="evento => estado.primeiroValor = evento.target.value" type="number" placeholder="Digite o primeiro valor:" class="form-control mb-3"></input>
+                    <input @keyup="evento => estado.segundoValor = evento.target.value" type="number" placeholder="Digite o segundo valor:" class="form-control mb-3"></input>
                 </div>
             </div>
         </form>
@@ -46,13 +71,11 @@
     }
 
     header {
-        background-color: #0c2461;
+        background-color: #4834d4;
         
     }
 
     .container_screen {
-        background-color: #079992;
-        max-height: 145px;
-        height: 100%;
+        background-color: #be2edd;
     }
 </style>
