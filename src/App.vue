@@ -1,47 +1,58 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <div class="container p-4">
+        <header class="p-4 mb-4 mt-4 rounded-3">
+            <h1>Caculadora Aritmética</h1>
+        </header>
+        <form>
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <input type="number" placeholder="Digite o primeiro valor:" class="form-control"></input>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <input type="number" placeholder="Digite o segundo valor:" class="form-control"></input>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <select name="" id="" class="form-control">
+                                <option value="adicao">Adição +</option>
+                                <option value="adicao">Subtração -</option>
+                                <option value="adicao">Multiplicação *</option>
+                                <option value="adicao">Divisão /</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="container container_screen p-3">
+                        10 + 10 = 20
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
+    .container {
+        color: #fff;
+    }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+    header {
+        background-color: #0c2461;
+        
+    }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
+    .container_screen {
+        background-color: #079992;
+        max-height: 145px;
+        height: 100%;
+    }
 </style>
